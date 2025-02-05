@@ -31,8 +31,8 @@ class _BeaconScannerState extends State<BeaconScanner> {
   @override
   void initState() {
     super.initState();
-    // _startMonitoring();
-    _initBeaconScanner();
+    _startMonitoring();
+    // _initBeaconScanner();
   }
 
   Future<void> _startMonitoring() async {

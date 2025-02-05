@@ -4,13 +4,32 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a scan ibeacon for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Sample
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```Dart
+     final beaconScannerPlugin = BeaconScannerPlugin();
+     await beaconScannerPlugin.init();
+     await beaconScannerPlugin.startMonitoringRegion();
+     beaconScannerPlugin.onBeaconsRanged = (beacons) {
+       if (mounted) {
+         final beaconData = beacons
+             .map((result) => BeaconData(
+                   uuid: result.proximityUUID,
+                   rssi: result.rssi,
+                   distance: result.accuracy,
+                 ))
+             .toList();
+         setState(() {
+           _beacons = beaconData;
+         });
+       }
+     }
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## More screenshots
+| **screenshots** | **video** 
+| ------------- | ------------- 
+|![Screenshots](screenshots/screenshots.png)|![image](screenshots/scanning.gif)
